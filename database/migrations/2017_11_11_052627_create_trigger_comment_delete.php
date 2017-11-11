@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTriggerPostDelete extends Migration
+class CreateTriggerCommentDelete extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class CreateTriggerPostDelete extends Migration
     public function up()
     {
         DB::unprepared('
-            CREATE TRIGGER post_delete AFTER DELETE ON posts FOR EACH ROW
+            CREATE TRIGGER comment_delete AFTER DELETE ON comments FOR EACH ROW
             BEGIN
-                UPDATE users SET post_count = post_count-1 WHERE id = OLD.user_id;
+                UPDATE posts SET comment_count = comment_count-1 WHERE id = OLD.post_id;
             END
         ');
     }
@@ -28,6 +28,6 @@ class CreateTriggerPostDelete extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER `post_delete`');
+        DB::unprepared('DROP TRIGGER `comment_delete`');
     }
 }

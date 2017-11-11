@@ -13,11 +13,10 @@ class CreateTriggerPostInsert extends Migration
      */
     public function up()
     {
-         DB::unprepared('
+        DB::unprepared('
             CREATE TRIGGER post_insert AFTER INSERT ON posts FOR EACH ROW
             BEGIN
-                UPDATE users SET post_count = post_count+1
-                WHERE id = NEW.user_id;
+                UPDATE users SET post_count = post_count+1 WHERE id = NEW.user_id;
             END
         ');
     }
