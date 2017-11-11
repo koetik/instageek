@@ -1,77 +1,63 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+<style type="text/css">
+    body{
+        background-color: #F9FAF9;
+    }
+    .container{
+        margin-top: 100px;
+    }
+</style>
+<div class="ui container">
+    <div class="ui equal width center aligned padded grid stackable">
+        <div class="row">
+            <div class="five wide column">
+                <div class="ui segments">
+                    <div class="ui segment inverted nightli">
+                        <h3 class="ui header">
+                            Register
+                        </h3>
+                    </div>
+                    <div class="ui segment">
+                        <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                            {{ csrf_field() }}
+                            <div class="ui input fluid">
+                                <input type="email" placeholder="Email..." name="email">
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="ui divider hidden"></div>
+                            <div class="ui input fluid">
+                                <input type="text" placeholder="Username" name="username">
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="ui divider hidden"></div>
+                            <div class="ui input fluid">
+                                <input type="password" placeholder="Password..." name="password">
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="ui divider hidden"></div>
+                            <div class="ui input fluid">
+                                <input type="password" placeholder="Confirm Password..." name="password_confirmation">
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+
+                            @if ($errors->has('email'))
+                                <div class="ui error message">
+                                    <!-- belum tau caranya custom message error login -->
+                                    <div class="header">Periksa kembali email anda</div>
+                                </div>
+                            @endif
+                            <div class="ui divider hidden"></div>
+                            <button class="ui primary fluid button">
+                                <i class="key icon"></i>
+                                Register
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
+        
     </div>
 </div>
+
 @endsection
