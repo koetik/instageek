@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFollowingsTable extends Migration
+class CreateTriggerLikeInsert extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateFollowingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('followings', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('following_id');
-            $table->timestamps();
-        });
+        DB::unprepared('
+            CREATE TRIGGER like_insert AFTER INSERT ON likes FOR EACH ROW
+            BEGIN
+                UPDATE posts SET like_count = like_count+1 WHERE id = NEW.post_id;
+            END
+        ');
     }
 
     /**
@@ -28,6 +28,6 @@ class CreateFollowingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('followings');
+        DB::unprepared('DROP TRIGGER `like_insert`');
     }
 }
