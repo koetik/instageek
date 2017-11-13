@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->string('uid');
             $table->string('photo');
             $table->text('caption');
             $table->integer('like_count')->default(0);

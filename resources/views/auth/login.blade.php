@@ -1,15 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<style type="text/css">
-    body{
-        background-color: #F9FAF9;
-    }
-    .container{
-        margin-top: 100px;
-    }
-</style>
-<div class="ui container">
+<div class="ui container logContainer">
     <div class="ui equal width center aligned padded grid stackable">
         <div class="row">
             <div class="five wide column">

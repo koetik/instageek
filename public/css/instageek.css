@@ -1,0 +1,42 @@
+body {
+	background-color: #F9FAF9;
+}
+.main.container {
+	margin-top: 2em;
+}
+
+.main .item:hover{
+	background-color: white !important;
+}
+
+.main.menu .item img.logo {
+	margin-right: 1.5em;
+}
+
+.searchItem {
+	margin-top: 1.3em;
+}
+
+.logo {
+	width: 150px !important;
+	margin-top: 0.6em;
+}
+
+
+.main.menu {
+	background-color: #FFFFFF;
+	border: 1px solid #DDD;
+}
+
+.logContainer{
+	margin-top: 100px;
+}
+
+.name{
+	color:black;
+	font-weight:bold;
+}
+
+.name:hover{
+	color:black;
+}
