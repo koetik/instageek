@@ -1,69 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+<div class="ui container logContainer">
+    <div class="ui equal width center aligned padded grid stackable">
+        <div class="row">
+            <div class="five wide column">
+                <img src="{{asset('img/front_page.jpg')}}" width="250">
+            </div>
+            <div class="five wide column">
+                <div class="ui segments">
+                    <div class="ui segment">
+                        <img src="{{asset('img/brand.png')}}" width="250">
+                        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                            {{ csrf_field() }}
+                            <div class="ui input fluid">
+                                <input type="text" placeholder="Your Email..." name="email">
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="ui divider hidden"></div>
+                            <div class="ui input fluid">
+                                <input type="password" placeholder="Your Password..." name="password">
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
+                            @if ($errors->has('email'))
+                                <div class="ui error message">
+                                    <!-- belum tau caranya custom message error login -->
+                                    <div class="header">Periksa kembali email anda</div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                            @endif
+                            <div class="ui divider hidden"></div>
+                            <button class="ui primary fluid button">
+                                <i class="key icon"></i>
+                                Login
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="ui segment">
+                    Do not have an account? <a href="{{ route('register') }}">Register</a>
                 </div>
             </div>
+
         </div>
+        
     </div>
 </div>
+
 @endsection
