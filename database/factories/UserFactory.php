@@ -15,20 +15,14 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
     static $password;
-
-    $filepath = storage_path('avatars');
-
-    if(!File::exists($filepath)){
-        File::makeDirectory($filepath);
-    }
-
+    
     return [
         'username' => $faker->firstName,
         'email' => $faker->unique()->safeEmail,
         'name' => $faker->name,
         'gender' => $faker->randomElement(['M' ,'F']),
         'password' => $password ?: $password = bcrypt('123456'),
-        'profile_picture' => $faker->image($filepath,400, 300),
+        'profile_picture' => 'user/elliot.jpg',
         'remember_token' => str_random(10),
     ];
 });

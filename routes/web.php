@@ -16,11 +16,15 @@
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
+	//home
+	Route::get('/', 'HomeController@index')->name('home');
 
-	Route::get('/', function () {
-	    return view('welcome');
-	})->name('home');	
+	//comment
+	Route::post('/comment', 'CommentController@store')->name('comment.store');
 
-	Route::get('/home', 'HomeController@index');
+	//like
+	Route::post('/like', 'LikeController@store')->name('like.insert');
+	Route::delete('/like/{uid}/{id}', 'LikeController@destroy')->name('like.destroy');
+	
 });
 
