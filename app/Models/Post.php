@@ -26,4 +26,14 @@ class Post extends Model
     {
         return $this->hasMany(PostTag::class);
     }
+
+    public function likeIsAvailable()
+    {
+        $user       = auth()->user();
+        $like = $this->like()->whereUserId($user->id)->first();
+        if($like) {
+            return $like->id;
+        }
+        return false;
+    }
 }
